@@ -17,7 +17,7 @@ COPY ./backend /home/backend
 RUN cd /home/backend/ && source /etc/profile.d/rvm.sh && rvm use ruby-2.5.3@reminder && gem install bundle && \
   bundle install
 
-# && bundle exec rake db:setup && bundle exec rake db:migrate
+RUN chmod +x /home/backend/run.sh
 
 ADD ./assets/supervisor.conf /etc/supervisor.conf
 CMD ["supervisord", "-c", "/etc/supervisor.conf"]

@@ -16,6 +16,7 @@ services:
       - ./backend:/home/backend
     ports:
       - 127.0.0.1:3000:3000
+    command: bash -c '/home/backend/run.sh'
   angular:
     build:
       context: .
@@ -27,4 +28,3 @@ services:
       - ./frontend:/home/frontend
     env_file:
       - .env
-    # ./node_modules/@angular/cli/bin/ng s --aot --host 0.0.0.0
