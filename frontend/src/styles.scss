@@ -1,0 +1,31 @@
+@import '../node_modules/angular-calendar/css/angular-calendar.css';
+@import '~@angular/material/theming';
+@include mat-core();
+
+// Available color palettes: https://material.io/design/color/
+$evopark-app-primary: mat-palette($mat-light-blue, 600);
+$evopark-app-accent: mat-palette($mat-amber, 800);
+
+$evopark-app-warn: mat-palette($mat-red);
+
+$evopark-app-theme: mat-light-theme(
+  $evopark-app-primary,
+  $evopark-app-accent,
+  $evopark-app-warn
+);
+
+@include angular-material-theme($evopark-app-theme);
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:10.5
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+  ruby:
+    build: .
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/home/backend
+    ports:
+      - 127.0.0.1:3000:3000
+  angular:
+    build:
+      context: .
+      dockerfile: angular.Dockerfile
+    restart: always
+    ports:
+      - 127.0.0.1:4201:4200
+    volumes:
+      - ./frontend:/home/frontend
+    env_file:
+      - .env
+    # ./node_modules/@angular/cli/bin/ng s --aot --host 0.0.0.0

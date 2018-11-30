@@ -1,0 +1,19 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  mat-card {
+    max-width: 600px;
+    width: 600px;
+    form {
+      mat-form-field {
+        width: 100%;
+      }
+      mat-card-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

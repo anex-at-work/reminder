@@ -1,0 +1,16 @@
+.pull-right {
+  margin-left: auto;
+}
+a {
+  cursor: pointer;
+}
+main {
+  display: flex;
+  app-dashboard-month {
+    flex-basis: 80%;
+  }
+  app-dashboard-form {
+    flex-basis: 20%;
+    margin: 20px;
+  }
+}

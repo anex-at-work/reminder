@@ -1,0 +1,39 @@
+<main>
+  <mat-card>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" autocomplete="off">
+      <input class="to-hide" type="text" name="login">
+      <input class="to-hide" type="password" name="password">
+      <mat-card-title>
+        Create an account
+      </mat-card-title>
+      <mat-card-content>
+        <mat-form-field>
+          <input
+            matInput placeholder="Email" formControlName="login">
+          <mat-error *ngIf="formGroup.get('login').hasError('email') && !formGroup.get('login').hasError('required') && !formGroup.get('login').hasError('full_messages')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="formGroup.get('login').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="formGroup.get('login').hasError('full_messages')">
+            {{formGroup.get('login').getError('full_messages')}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput placeholder="Enter password" formControlName="password"
+            [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="formGroup.get('password').hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <a [routerLink]="['/signin']" mat-raised-button>Log in</a>
+        <button type="submit" [disabled]="!formGroup.valid" mat-raised-button color="primary">Sign up</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</main>

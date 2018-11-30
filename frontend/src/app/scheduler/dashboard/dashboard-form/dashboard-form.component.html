@@ -1,0 +1,49 @@
+<form [formGroup]="formGroup" autocomplete="off">
+  <h1>The reminder</h1>
+  <h4 *ngIf="formGroup.get('date_at').value">
+    will be created at {{formGroup.get('date_at').value | date:'shortDate'}}
+  </h4>
+  <h4 *ngIf="!formGroup.get('date_at').value">
+    please, fill the expected date, or choose a date in future
+  </h4>
+  <mat-form-field>
+    <input
+      required matInput
+      placeholder="Title" formControlName="title">
+    <mat-error *ngIf="formGroup.get('title').hasError('required')">
+      Title is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea
+      matInput placeholder="Description"
+      formControlName="description"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput [ngxTimepicker]="picker"
+      [format]="24"
+      placeholder="Time" formControlName="time_at">
+    <ngx-material-timepicker #picker></ngx-material-timepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Repeats" formControlName="repeat_type">
+      <mat-option *ngFor="let repeat of repeatTypes" [value]="repeat.value">
+        {{repeat.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      [required]="!formGroup.get('date_at').value"
+      placeholder="...or just input the day" formControlName="user_date">
+    <mat-hint>E.g. "2nd of month", "10th last of month", "every Thursday"</mat-hint>
+  </mat-form-field>
+  <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onSave()">
+    <ng-container *ngIf="!reminder.id">Create</ng-container>
+    <ng-container *ngIf="reminder.id">Update</ng-container>
+  </button>
+  <button mat-raised-button color="warn" *ngIf="reminder.id" (click)="onDelete()">Delete</button>
+</form>
+

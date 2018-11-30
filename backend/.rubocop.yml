@@ -1,0 +1,10 @@
+require: rubocop-rspec
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+Metrics/LineLength:
+  Max: 160

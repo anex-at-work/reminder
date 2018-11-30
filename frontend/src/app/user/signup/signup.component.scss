@@ -1,0 +1,26 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  mat-card {
+    max-width: 600px;
+    width: 600px;
+    form {
+      mat-form-field {
+        width: 100%;
+      }
+      mat-card-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
+.to-hide {
+  font-size: 0;
+  width: 0;
+  height: 0;
+  display: block;
+  border: 0;
+}
